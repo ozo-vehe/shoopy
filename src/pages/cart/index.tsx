@@ -76,8 +76,8 @@ const Cart = () => {
                     `${currencySymbol} ${formatPrice(Number(discountPrice(item.price, item.category)) * exchangeRate)}`
                   ) : (
                     item.price
-                  )
-                  }</td>
+                  )}
+                </td>
               </tr>
             ))
           )}

@@ -18,7 +18,7 @@ export default function Product({ product, addToCart }) {
 
   // Discount price based on continent and category of product
   const discountPrice = (price, category) => {
-    return discountCalculator(continent, category, price);
+    return Number(discountCalculator(price, category, continent));
   };
 
   const formatPrice = (price) => {
