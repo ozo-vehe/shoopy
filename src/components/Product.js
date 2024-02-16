@@ -18,7 +18,6 @@ export default function Product({ product, addToCart }) {
 
   // Discount price based on continent and category of product
   const discountPrice = (price, category) => {
-    console.log(discountCalculator(price, category, continent));
     return Number(discountCalculator(price, category, continent));
   };
 
@@ -114,7 +113,6 @@ export default function Product({ product, addToCart }) {
               <span>
                 {currencySymbol}{" "}
                 {formatPrice(Number(discountPrice(price, category)) * exchangeRatePrice)}
-                {console.log(formatPrice(Number(discountPrice(price, category)) * exchangeRatePrice))}
               </span>
               {user.country === "Nigeria" && (
                 <span className="discount text-blue-500 text-[12px] font-[400]">{`(-${categoryDiscount(
