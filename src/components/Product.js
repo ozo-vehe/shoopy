@@ -112,9 +112,7 @@ export default function Product({ product, addToCart }) {
             <div className="flex text-[20px] font-bold items-center gap-1">
               <span>
                 {currencySymbol}{" "}
-                {formatPrice(
-                  discountPrice(price, category) * exchangeRatePrice
-                )}
+                {formatPrice(Number(discountPrice(price, category)) * exchangeRatePrice)}
               </span>
               {user.country === "Nigeria" && (
                 <span className="discount text-blue-500 text-[12px] font-[400]">{`(-${categoryDiscount(
