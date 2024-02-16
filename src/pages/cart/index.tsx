@@ -18,7 +18,7 @@ const Cart = () => {
 
   // Discount price based on continent and category of product
   const discountPrice = (price: String | Number, category: String) => {
-    discountCalculator(price, category, continent);
+    return discountCalculator(price, category, continent);
   };
 
   const getTotalPrice = () => {
