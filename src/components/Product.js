@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useAuthentication } from "src/lib/hooks/use-authentication";
 import { useLocalContent } from "src/lib/hooks/use-local-content";
 import { countryDetails, exchangeRate } from "src/utils/shopy";
+import { discountCalculator } from "src/utils/discountCalculator";
 
 export default function Product({ product, addToCart }) {
   const { country } = useLocalContent();
@@ -17,32 +18,7 @@ export default function Product({ product, addToCart }) {
 
   // Discount price based on continent and category of product
   const discountPrice = (price, category) => {
-    if (continent === "Africa" || continent === "Asia") {
-      let discount = 0;
-      let finalPrice = 0;
-      switch (category) {
-        case "electronics":
-          discount = price * 0.2;
-          finalPrice = price - discount;
-          return finalPrice.toFixed(0);
-        case "jewelery":
-          discount = price * 0.35;
-          finalPrice = price - discount;
-          return finalPrice.toFixed(0);
-        case "men's clothing":
-          discount = price * 0.07;
-          finalPrice = price - discount;
-          return finalPrice.toFixed(0);
-        case "women's clothing":
-          discount = price * 0.07;
-          finalPrice = price - discount;
-          return finalPrice.toFixed(0);
-        default:
-          discount = price * 0.1;
-          finalPrice = price - discount;
-          return finalPrice.toFixed(0);
-      }
-    } else return price;
+    discountCalculator(continent, category, price);
   };
 
   const formatPrice = (price) => {

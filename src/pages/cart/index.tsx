@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthentication } from "src/lib/hooks/use-authentication";
+import { discountCalculator } from 'src/utils/discountCalculator';
 
 const Cart = () => {
   const [exchangeRate, setExchangeRate] = useState(0);
@@ -17,32 +18,7 @@ const Cart = () => {
 
   // Discount price based on continent and category of product
   const discountPrice = (price: String | Number, category: String) => {
-    if (continent === "Africa" || continent === "Asia") {
-      let discount = 0;
-      let finalPrice = 0;
-      switch (category) {
-        case "electronics":
-          discount = Number(price) * 0.2;
-          finalPrice = Number(price) - discount;
-          return finalPrice.toFixed(0);
-        case "jewelery":
-          discount = Number(price) * 0.35;
-          finalPrice = Number(price) - discount;
-          return finalPrice.toFixed(0);
-        case "men's clothing":
-          discount = Number(price) * 0.07;
-          finalPrice = Number(price) - discount;
-          return finalPrice.toFixed(0);
-        case "women's clothing":
-          discount = Number(price) * 0.07;
-          finalPrice = Number(price) - discount;
-          return finalPrice.toFixed(0);
-        default:
-          discount = Number(price) * 0.1;
-          finalPrice = Number(price) - discount;
-          return finalPrice.toFixed(0);
-      }
-    } else return price;
+    discountCalculator(price, category, continent);
   };
 
   const getTotalPrice = () => {
